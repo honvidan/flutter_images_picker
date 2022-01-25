@@ -60,7 +60,7 @@ class _TestPageState extends State<TestPage> {
   void takeImage(BuildContext context) async {
 
     List<File?> images  = await FlutterImagesPicker.pickImages(maxImages: 5);
-    //print(images);
+    // print(images);
     Navigator.of(context).pop();
   }
 

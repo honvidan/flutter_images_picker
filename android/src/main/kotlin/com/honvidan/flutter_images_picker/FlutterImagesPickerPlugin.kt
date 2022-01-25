@@ -95,6 +95,7 @@ class FlutterImagesPickerPlugin : FlutterPlugin, ActivityAware, MethodCallHandle
 
   override fun onAttachedToActivity(binding: ActivityPluginBinding) {
     this.activity = binding.activity
+    binding.addActivityResultListener(this)
   }
 
   override fun onDetachedFromActivityForConfigChanges() {
