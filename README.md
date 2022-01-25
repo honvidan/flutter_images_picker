@@ -1,6 +1,6 @@
 # Images Picker plugin for Flutter
 
-[![pub package](https://img.shields.io/pub/v/image_picker.svg)](https://pub.dev/packages/flutter_images_picker)
+[![pub package](https://img.shields.io/badge/pub-0.0.3-blue)](https://pub.dev/packages/flutter_images_picker)
 
 A Flutter plugin for iOS and Android for picking images from the image library,
 and taking new pictures with the camera.
@@ -13,8 +13,7 @@ First, add `flutter_images_picker` as a [dependency in your pubspec.yaml file](h
 
 This plugin requires iOS 9.0 or higher.
 
-Starting with version **0.8.1** the iOS implementation uses PHPicker to pick (multiple) images on iOS 14 or higher.
-As a result of implementing PHPicker it becomes impossible to pick HEIC images on the iOS simulator in iOS 14+. This is a known issue. Please test this on a real device, or test with non-HEIC images until Apple solves this issue. [63426347 - Apple known issue](https://www.google.com/search?q=63426347+apple&sxsrf=ALeKk01YnTMid5S0PYvhL8GbgXJ40ZS[…]t=gws-wiz&ved=0ahUKEwjKh8XH_5HwAhWL_rsIHUmHDN8Q4dUDCA8&uact=5)
+Starting with version **0.0.3** the iOS implementation uses ImagePicker to pick (multiple) images on iOS 14 or higher.
 
 Add the following keys to your _Info.plist_ file, located in `<project root>/ios/Runner/Info.plist`:
 
@@ -24,7 +23,7 @@ Add the following keys to your _Info.plist_ file, located in `<project root>/ios
 
 ### Android
 
-Starting with version **0.8.1** the Android implementation support to pick (multiple) images on Android 4.3 or higher.
+Starting with version **0.0.3** the Android implementation support to pick (multiple) images on Android 4.3 or higher.
 
 No configuration required - the plugin should work out of the box.
 
