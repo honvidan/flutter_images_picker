@@ -1,41 +1,30 @@
 package com.honvidan.flutter_images_picker
 
 import android.app.Activity
-import android.content.Context
 import android.content.Intent
+import androidx.annotation.NonNull
 import java.util.ArrayList
 
-import io.flutter.plugin.common.BinaryMessenger
 import io.flutter.plugin.common.MethodCall
 import io.flutter.plugin.common.MethodChannel
 import io.flutter.plugin.common.MethodChannel.MethodCallHandler
 import io.flutter.plugin.common.MethodChannel.Result
 import io.flutter.plugin.common.PluginRegistry
-import io.flutter.plugin.common.PluginRegistry.Registrar
-import io.flutter.view.FlutterView
 
 import com.imagepicker.features.ImagePicker
 import com.imagepicker.model.Image
+import io.flutter.embedding.engine.plugins.FlutterPlugin
+import io.flutter.embedding.engine.plugins.activity.ActivityAware
+import io.flutter.embedding.engine.plugins.activity.ActivityPluginBinding
 
 /**
  * FlutterImagesPickerPlugin
  */
-class FlutterImagesPickerPlugin : MethodCallHandler, PluginRegistry.ActivityResultListener, PluginRegistry.RequestPermissionsResultListener {
+class FlutterImagesPickerPlugin : FlutterPlugin, ActivityAware, MethodCallHandler, PluginRegistry.ActivityResultListener, PluginRegistry.RequestPermissionsResultListener {
 
   private var pendingResult: Result? = null
 
-  private var context: Context? = null
   private var activity: Activity? = null
-  private var channel: MethodChannel? = null
-  private var messenger: BinaryMessenger? = null
-
-  private constructor(_activity: Activity, _context: Context, _channel: MethodChannel, _messenger: BinaryMessenger) {
-    this.activity = _activity
-    this.context = _context
-    this.channel = _channel
-    this.messenger = _messenger
-  }
-
 
   override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<String>, grantResults: IntArray): Boolean {
     return false
@@ -91,16 +80,33 @@ class FlutterImagesPickerPlugin : MethodCallHandler, PluginRegistry.ActivityResu
     private val PICK_IMAGES = "pickImages"
     private val MAX_IMAGES = "maxImages"
 
-    /**
-     * Plugin registration.
-     */
-    @JvmStatic
-    fun registerWith(registrar: Registrar) {
-      val channel = MethodChannel(registrar.messenger(), "flutter_images_picker")
-      val instance = FlutterImagesPickerPlugin(registrar.activity(), registrar.context(), channel, registrar.messenger())
-      registrar.addActivityResultListener(instance);
-      channel.setMethodCallHandler(instance)
-    }
+  }
+
+  private lateinit var channel : MethodChannel
+
+  override fun onAttachedToEngine(@NonNull flutterPluginBinding: FlutterPlugin.FlutterPluginBinding) {
+    channel = MethodChannel(flutterPluginBinding.binaryMessenger, "flutter_images_picker")
+    channel.setMethodCallHandler(this)
+  }
+
+  override fun onDetachedFromEngine(@NonNull binding: FlutterPlugin.FlutterPluginBinding) {
+    channel.setMethodCallHandler(null)
+  }
+
+  override fun onAttachedToActivity(binding: ActivityPluginBinding) {
+    this.activity = binding.activity
+  }
+
+  override fun onDetachedFromActivityForConfigChanges() {
+
+  }
+
+  override fun onReattachedToActivityForConfigChanges(binding: ActivityPluginBinding) {
+
+  }
+
+  override fun onDetachedFromActivity() {
+
   }
 
 }
