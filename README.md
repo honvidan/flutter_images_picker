@@ -31,3 +31,12 @@ It is no longer required to add `android:requestLegacyExternalStorage="true"` as
 
 **Note:** Images and videos picked using the camera are saved to your application's local cache, and should therefore be expected to only be around temporarily.
 If you require your picked image to be stored permanently, it is your responsibility to move it to a more permanent location.
+
+Basic usage (to create an SVG rendering widget from an asset):
+
+```dart
+void takeImage(BuildContext context) async {
+  List<File?> images  = await FlutterImagesPicker.pickImages(maxImages: 5);
+  Navigator.of(context).pop();
+}
+```
