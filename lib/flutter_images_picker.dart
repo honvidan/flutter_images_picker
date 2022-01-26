@@ -1,4 +1,3 @@
-
 import 'dart:async';
 import 'dart:io';
 
@@ -16,12 +15,11 @@ class FlutterImagesPicker {
     required int maxImages,
     enableGestures = true,
   }) async {
-
-    final List<dynamic> images = await _channel.invokeMethod('pickImages',
-        <String, dynamic>{
-          "maxImages": maxImages,
-          "enableGestures": enableGestures
-        });
+    final List<dynamic> images = await _channel.invokeMethod(
+        'pickImages', <String, dynamic>{
+      "maxImages": maxImages,
+      "enableGestures": enableGestures
+    });
 
     return images.map((f) {
       return File(f["path"]);

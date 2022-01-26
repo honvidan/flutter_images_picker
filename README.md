@@ -1,6 +1,6 @@
 # Images Picker plugin for Flutter
 
-[![pub package](https://img.shields.io/badge/pub-0.0.6-blue)](https://pub.dev/packages/flutter_images_picker)[![license](https://img.shields.io/badge/license-GNUv3-brightgreen)](https://github.com/honvidan/flutter_images_picker/blob/main/LICENSE)
+[![pub package](https://img.shields.io/badge/pub-0.1.0-blue)](https://pub.dev/packages/flutter_images_picker)[![license](https://img.shields.io/badge/license-GNUv3-brightgreen)](https://github.com/honvidan/flutter_images_picker/blob/main/LICENSE)
 
 
 A Flutter plugin for iOS and Android for picking images from the image library,
@@ -14,7 +14,7 @@ First, add `flutter_images_picker` as a [dependency in your pubspec.yaml file](h
 
 This plugin requires iOS 9.0 or higher.
 
-Starting with version **0.0.6** the iOS implementation uses ImagePicker to pick (multiple) images on iOS 14 or higher.
+Starting with version **0.1.0** the iOS implementation uses ImagePicker to pick (multiple) images on iOS 14 or higher.
 
 Add the following keys to your _Info.plist_ file, located in `<project root>/ios/Runner/Info.plist`:
 
@@ -24,7 +24,7 @@ Add the following keys to your _Info.plist_ file, located in `<project root>/ios
 
 ### Android
 
-Starting with version **0.0.6** the Android implementation support to pick (multiple) images on Android 4.3 or higher.
+Starting with version **0.1.0** the Android implementation support to pick (multiple) images on Android 4.3 or higher.
 
 No configuration required - the plugin should work out of the box.
 

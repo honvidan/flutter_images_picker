@@ -58,14 +58,12 @@ class _TestPageState extends State<TestPage> {
   }
 
   void takeImage(BuildContext context) async {
-
-    List<File?> images  = await FlutterImagesPicker.pickImages(maxImages: 5);
+    List<File?> images = await FlutterImagesPicker.pickImages(maxImages: 5);
     // print(images);
     Navigator.of(context).pop();
   }
 
   Future _pickImage(BuildContext context) async {
-
     var isPopup = false;
 
     showDialog<void>(
@@ -78,7 +76,6 @@ class _TestPageState extends State<TestPage> {
           }
           return const Center();
         });
-
   }
 
   @override
@@ -104,8 +101,6 @@ class _TestPageState extends State<TestPage> {
               ),
             ),
           ],
-        )
-    );
+        ));
   }
 }
-
