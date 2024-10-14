@@ -17,6 +17,7 @@ import com.imagepicker.features.ImagePickerSavePath;
 import com.imagepicker.model.Image;
 
 import java.io.File;
+import java.io.IOException;
 import java.net.URLConnection;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -113,7 +114,11 @@ public class ImagePickerUtils {
         MediaMetadataRetriever retriever = new MediaMetadataRetriever();
         retriever.setDataSource(context, uri);
         Long duration = Long.parseLong(retriever.extractMetadata(MediaMetadataRetriever.METADATA_KEY_DURATION));
-        retriever.release();
+        try{
+            retriever.release();
+        } catch (IOException ex) {
+            // handle the exception here
+        }
         long second = (duration / 1000) % 60;
         long minute = (duration / (1000 * 60)) % 60;
         long hour = (duration / (1000 * 60 * 60)) % 24;

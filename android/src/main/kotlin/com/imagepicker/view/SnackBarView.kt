@@ -59,10 +59,10 @@ class SnackBarView @JvmOverloads constructor(
     }
 
     fun hide() {
-        hide(null)
+        hide(Runnable {})
     }
 
-    private fun hide(runnable: Runnable?) {
+    private fun hide(runnable: Runnable) {
         ViewCompat.animate(this)
             .translationY(height.toFloat())
             .setDuration(ANIM_DURATION.toLong())
