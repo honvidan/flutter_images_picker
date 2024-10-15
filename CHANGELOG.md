@@ -1,3 +1,7 @@
+## 0.1.3
+
+- Upgrade version
+
 ## 0.1.2
 
 - Upgrade gallery for Android

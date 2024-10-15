@@ -4,14 +4,14 @@
 #
 Pod::Spec.new do |s|
   s.name             = 'flutter_images_picker'
-  s.version          = '0.0.1'
+  s.version          = '0.1.3'
   s.summary          = 'Flutter Images Picker is a flutter plugin.'
   s.description      = <<-DESC
 Flutter Images Picker is a flutter plugin.
                        DESC
-  s.homepage         = 'http://example.com'
+  s.homepage         = 'https://honvidan.com'
   s.license          = { :file => '../LICENSE' }
-  s.author           = { 'Your Company' => 'email@example.com' }
+  s.author           = { 'Dan Hon' => 'dan.honvi@gmail.com' }
   s.source           = { :path => '.' }
   s.source_files = 'Classes/**/*.{swift,h,m}'
   s.resource_bundles = { 'ImagePicker' => ['Classes/ImagePicker/Images/*.{png}'] }
