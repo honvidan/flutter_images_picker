@@ -24,11 +24,9 @@ Add the following keys to your _Info.plist_ file, located in `<project root>/ios
 
 ### Android
 
-Starting with version **0.1.2** the Android implementation support to pick (multiple) images on Android 4.3 or higher.
+Starting with version **0.1.2** the Android implementation support to pick (multiple) images on Android 5.0 or higher.
 
 No configuration required - the plugin should work out of the box.
-
-It is no longer required to add `android:requestLegacyExternalStorage="true"` as an attribute to the `<application>` tag in AndroidManifest.xml, as `image_picker` has been updated to make use of scoped storage.
 
 **Note:** Images and videos picked using the camera are saved to your application's local cache, and should therefore be expected to only be around temporarily.
 If you require your picked image to be stored permanently, it is your responsibility to move it to a more permanent location.
