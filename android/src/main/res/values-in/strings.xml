@@ -1,24 +1,25 @@
-<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="ef_permission_write_external_rationale">Izinkan akses penyimpanan eksternal untuk memilih gambar</string>
+    <string name="title_choose_image_provider">Pilih</string>
+    <string name="action_cancel">Batal</string>
+    <string name="title_gallery">Galeri</string>
+    <string name="title_camera">Kamera</string>
 
-    <string name="ef_ok">OK</string>
-    <string name="ef_done">SELESAI</string>
-    <string name="ef_camera">KAMERA</string>
+    <string name="permission_camera_denied">
+        <![CDATA[Untuk mengambil gambar dibutuhkan akses perizinan penyimpanan. Mohon berikan perizinan tersebut melalui Pengaturan > Perizinan.]]></string>
 
-    <string name="ef_title_folder">Folder</string>
-    <string name="ef_title_select_image">Ketuk untuk memilih gambar</string>
-    <string name="ef_ltitle_permission_denied">Izin ditolak</string>
+    <string name="error_failed_to_create_camera_image_file">Membuat file gambar dari kamera gagal</string>
+    <string name="error_failed_pick_gallery_image">Pemilihan gambar dari galeri gagal</string>
+    <string name="error_failed_to_crop_image">Gambar gagal dipotong</string>
+    <string name="error_failed_to_compress_image">Gambar gagal dikompres</string>
+    <string name="error_task_cancelled">Task dibatalkan</string>
+    <string name="error_camera_app_not_found">Kamera tidak ditemukan</string>
 
-    <string name="ef_selected">%d terpilih</string>
-    <string name="ef_selected_with_limit">%1$d/%2$d terpilih</string>
-
-    <string name="ef_error_create_image_file">Gagal membuat berkas gambar</string>
-    <string name="ef_error_no_camera">Kamera tidak ditemukan</string>
-    <string name="ef_error_null_cursor">Ups, ada yang tidak beres!</string>
-
-    <string name="ef_msg_empty_images">Gambar tidak ditemukan</string>
-    <string name="ef_msg_no_write_external_permission">Mohon berikan izin terhadap penyimpanan untuk memilih gambar</string>
-    <string name="ef_msg_no_camera_permission">Mohon berikan izin terhadap kamera untuk mengambil gambar</string>
-    <string name="ef_msg_limit_images">Gambar yang terpilih sudah mencapai batas maksimal</string>
+    <!-- uCrop string resource start -->
+    <string name="ucrop_label_original">Asli</string>
+    <string name="ucrop_label_edit_photo">Edit foto</string>
+    <string name="ucrop_menu_crop">Potong</string>
+    <string name="ucrop_rotate">Memutar</string>
+    <string name="ucrop_scale">Skala</string>
+    <string name="ucrop_crop">Potong</string>
+    <!-- uCrop string resource end -->
 </resources>

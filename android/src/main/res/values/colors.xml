@@ -1,13 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources xmlns:tools="http://schemas.android.com/tools">
-    <color name="ef_colorPrimary" tools:override="true">#3F51B5</color>
-    <color name="ef_colorPrimaryDark" tools:override="true">#303F9F</color>
-    <color name="ef_colorAccent" tools:override="true">#FF4081</color>
-    <color name="ef_colorTextPrimary" tools:override="true">#FFFFFF</color>
+<resources>
 
-    <color name="ef_white">#FFFFFF</color>
-    <color name="ef_grey">#9E9E9E</color>
-    <color name="ef_black_alpha_50">#80000000</color>
-    <color name="ef_black_alpha_aa">#AA000000</color>
-    <color name="ef_teal">#009688</color>
+    <color name="dialog_choose_icon_color">#757575</color>
+    <color name="dialog_choose_text_color">#757575</color>
+
+    <!--uCrop Activity-->
+    <color name="ucrop_color_active_controls_color">@color/ucrop_color_widget_active</color>
+    <color name="ucrop_color_inactive_controls_color">#787878</color>
+    <color name="ucrop_color_widget_rotate_mid_line">@color/ucrop_color_widget_active</color>
+    <color name="ucrop_color_active_aspect_ratio">@color/ucrop_color_widget_active</color>
+    <color name="ucrop_color_widget_text">@color/ucrop_color_widget_active</color>
+    <color name="ucrop_color_widget_background">#FFFFFF</color>
+
 </resources>
