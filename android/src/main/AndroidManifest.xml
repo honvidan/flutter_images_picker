@@ -1,30 +1,39 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-  package="com.honvidan.flutter_images_picker">
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.CAMERA" />
+    package="com.honvidan.flutter_images_picker">
+
 
     <application>
         <activity
-            android:name="com.imagepicker.features.ImagePickerActivity"
-            android:configChanges="orientation|screenSize"
-            android:exported="true"
-            android:theme="@style/ef_AppTheme"/>
+            android:name="com.honvidan.flutter_images_picker.imagepicker.ImagePickerActivity"
+            android:screenOrientation="unspecified"
+            android:theme="@style/Theme.Transparent.ImagePicker" />
+
+        <activity
+            android:name="com.yalantis.ucrop.UCropActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
 
         <provider
-            android:name="com.imagepicker.helper.ImagePickerFileProvider"
+            android:name="com.honvidan.flutter_images_picker.imagepicker.ImagePickerFileProvider"
             android:authorities="${applicationId}.imagepicker.provider"
             android:exported="false"
             android:grantUriPermissions="true">
+
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
-                android:resource="@xml/image_picker_provider_paths"/>
+                android:resource="@xml/image_picker_provider_paths" />
+
         </provider>
 
     </application>
     <queries>
+        <!-- Query Camera Packages -->
         <intent>
             <action android:name="android.media.action.IMAGE_CAPTURE" />
+        </intent>
+        <!-- Query Open Document -->
+        <intent>
+            <action android:name="android.intent.action.OPEN_DOCUMENT_TREE" />
         </intent>
     </queries>
 </manifest>
