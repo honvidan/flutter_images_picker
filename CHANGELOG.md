@@ -1,4 +1,6 @@
-# CHANGES
+## 0.1.1
+
+- Upgrade using lasted flutter for iOS
 
 ## 0.1.0
 
