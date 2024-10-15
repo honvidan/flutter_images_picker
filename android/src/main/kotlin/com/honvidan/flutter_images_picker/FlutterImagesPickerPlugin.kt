@@ -3,7 +3,11 @@ package com.honvidan.flutter_images_picker
 import android.app.Activity
 import android.content.Intent
 import android.net.Uri
+import android.os.Environment
+import android.util.Log
+import android.view.View
 import android.widget.ImageView
+import android.widget.Toast
 import androidx.annotation.NonNull
 import com.honvidan.flutter_images_picker.imagepicker.ImagePicker
 import io.flutter.embedding.engine.plugins.FlutterPlugin
@@ -14,6 +18,7 @@ import io.flutter.plugin.common.MethodChannel
 import io.flutter.plugin.common.MethodChannel.MethodCallHandler
 import io.flutter.plugin.common.MethodChannel.Result
 import io.flutter.plugin.common.PluginRegistry
+import java.io.File
 
 /**
  * FlutterImagesPickerPlugin
@@ -48,22 +53,89 @@ class FlutterImagesPickerPlugin : FlutterPlugin, ActivityAware, MethodCallHandle
     return false
   }
 
-  private fun presentPicker(maxImages: Int) {
+  fun pickProfileImage() {
     this.activity?.let {
-      ImagePicker.with(it) // Crop Image(User can choose Aspect Ratio)
-        .crop() // User can only select image from Gallery
+      ImagePicker.with(it)
+        // Crop Square image
+        .galleryOnly()
+        .cropSquare()
+        .setImageProviderInterceptor { imageProvider -> // Intercept ImageProvider
+          Log.d("ImagePicker", "Selected ImageProvider: " + imageProvider.name)
+        }
+        .setDismissListener {
+          Log.d("ImagePicker", "Dialog Dismiss")
+        }
+        // Image resolution will be less than 512 x 512
+        .maxResultSize(200, 200)
+        .start(PROFILE_IMAGE_REQ_CODE)
+    }
+  }
+
+  fun pickGalleryImage() {
+    this.activity?.let {
+      ImagePicker.with(it)
+        // Crop Image(User can choose Aspect Ratio)
+        .crop()
+        // User can only select image from Gallery
         .galleryOnly()
 
-        .galleryMimeTypes(
-          arrayOf<String>(
+        .galleryMimeTypes( // no gif images at all
+          mimeTypes = arrayOf(
             "image/png",
             "image/jpg",
             "image/jpeg"
           )
-        ) // Image resolution will be less than 1080 x 1920
-        .maxResultSize(1080, 1920) // .saveDir(getExternalFilesDir(null))
+        )
+        // Image resolution will be less than 1080 x 1920
+        .maxResultSize(1080, 1920)
+        // .saveDir(getExternalFilesDir(null)!!)
         .start(GALLERY_IMAGE_REQ_CODE)
     }
+  }
+
+  fun pickCameraImage() {
+    this.activity?.let {
+      ImagePicker.with(it)
+        // User can only capture image from Camera
+        .cameraOnly()
+        // Image size will be less than 1024 KB
+        // .compress(1024)
+        //  Path: /storage/sdcard0/Android/data/package/files
+        .saveDir(it.getExternalFilesDir(null)!!)
+        //  Path: /storage/sdcard0/Android/data/package/files/DCIM
+        .saveDir(it.getExternalFilesDir(Environment.DIRECTORY_DCIM)!!)
+        //  Path: /storage/sdcard0/Android/data/package/files/Download
+        .saveDir(it.getExternalFilesDir(Environment.DIRECTORY_DOWNLOADS)!!)
+        //  Path: /storage/sdcard0/Android/data/package/files/Pictures
+        .saveDir(it.getExternalFilesDir(Environment.DIRECTORY_PICTURES)!!)
+        //  Path: /storage/sdcard0/Android/data/package/files/Pictures/ImagePicker
+        .saveDir(File(
+          it.getExternalFilesDir(Environment.DIRECTORY_PICTURES)!!,
+          "ImagePicker"
+        ))
+        //  Path: /storage/sdcard0/Android/data/package/files/ImagePicker
+        .saveDir(it.getExternalFilesDir("ImagePicker")!!)
+        //  Path: /storage/sdcard0/Android/data/package/cache/ImagePicker
+        .saveDir(File(it.getExternalCacheDir(), "ImagePicker"))
+        //  Path: /data/data/package/cache/ImagePicker
+        .saveDir(File(it.getCacheDir(), "ImagePicker"))
+        //  Path: /data/data/package/files/ImagePicker
+        .saveDir(File(it.getFilesDir(), "ImagePicker"))
+
+        // Below saveDir path will not work, So do not use it
+        //  Path: /storage/sdcard0/DCIM
+        //  .saveDir(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM))
+        //  Path: /storage/sdcard0/Pictures
+        //  .saveDir(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES))
+        //  Path: /storage/sdcard0/ImagePicker
+        //  .saveDir(File(Environment.getExternalStorageDirectory(), "ImagePicker"))
+
+        .start(CAMERA_IMAGE_REQ_CODE)
+    }
+  }
+
+  private fun presentPicker(maxImages: Int) {
+    pickGalleryImage()
   }
 
   override fun onMethodCall(call: MethodCall, result: Result) {
@@ -95,6 +167,10 @@ class FlutterImagesPickerPlugin : FlutterPlugin, ActivityAware, MethodCallHandle
       containerMap.put("path", uri?.path!!)
       list.add(containerMap)
       this.pendingResult?.success(list)
+    } else if (resultCode == ImagePicker.RESULT_ERROR) {
+      Toast.makeText(this.activity, ImagePicker.getError(data), Toast.LENGTH_SHORT).show()
+    } else {
+      Toast.makeText(this.activity, "Task Cancelled", Toast.LENGTH_SHORT).show()
     }
 //    if (ImagePicker.shouldHandle(requestCode, resultCode, data)) {
 //      // Get a list of picked images

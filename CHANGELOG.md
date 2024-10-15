@@ -1,6 +1,6 @@
 ## 0.1.2
 
-- Upgrade for Android
+- Upgrade gallery for Android
 
 ## 0.1.1
 
