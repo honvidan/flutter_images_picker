@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:io';
 
 import 'package:flutter/services.dart';
 
@@ -20,7 +19,7 @@ class FlutterImagesPicker {
 
   /// pickImages will pickImages, input maxImages
   /// output is List of Files
-  static Future<List<File>> pickImages({
+  static Future<List<Uri>> pickImages({
     required int maxImages,
     enableGestures = true,
   }) async {
@@ -31,7 +30,7 @@ class FlutterImagesPicker {
     });
 
     return images.map((f) {
-      return File(f["path"]);
+      return Uri.file(f["path"]);
     }).toList();
   }
 }

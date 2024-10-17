@@ -1,6 +1,10 @@
+## 0.1.4
+
+- Change return List<File> to List<Uri>
+
 ## 0.1.3
 
-- Upgrade version
+- Upgrade version 0.1.3
 
 ## 0.1.2
 

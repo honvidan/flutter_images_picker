@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'dart:async';
-import 'dart:io';
 
 import 'package:flutter/services.dart';
 import 'package:flutter_images_picker/flutter_images_picker.dart';
@@ -53,7 +52,7 @@ class _TestPageState extends State<TestPage> {
   }
 
   void takeImage(BuildContext context) async {
-    List<File?> images = await FlutterImagesPicker.pickImages(maxImages: 5);
+    List<Uri?> images = await FlutterImagesPicker.pickImages(maxImages: 5);
 
     Navigator.of(context).pop();
   }

@@ -14,7 +14,7 @@ First, add `flutter_images_picker` as a [dependency in your pubspec.yaml file](h
 
 This plugin requires iOS 14.0 or higher.
 
-Starting with version **0.1.3** the iOS implementation uses ImagePicker to pick (multiple) images on iOS 14 or higher.
+Starting with version **0.1.4** the iOS implementation uses ImagePicker to pick (multiple) images on iOS 14 or higher.
 
 Add the following keys to your _Info.plist_ file, located in `<project root>/ios/Runner/Info.plist`:
 
@@ -24,7 +24,7 @@ Add the following keys to your _Info.plist_ file, located in `<project root>/ios
 
 ### Android
 
-Starting with version **0.1.3** the Android implementation support to pick (multiple) images on Android 5.0 or higher.
+Starting with version **0.1.4** the Android implementation support to pick (multiple) images on Android 5.0 or higher.
 
 No configuration required - the plugin should work out of the box.
 
@@ -35,7 +35,7 @@ If you require your picked image to be stored permanently, it is your responsibi
 
 ```dart
 void takeImage(BuildContext context) async {
-  List<File?> images  = await FlutterImagesPicker.pickImages(maxImages: 5);
+  List<Uri?> images  = await FlutterImagesPicker.pickImages(maxImages: 5);
   Navigator.of(context).pop();
 }
 ```
